@@ -27,6 +27,9 @@ def complex_matrix_inverse(mat_r, mat_i, reg=1e-3):
     """ Tikhonov regularization
         (https://gitlab.uni-oldenburg.de/hura4843/deep-mfmvdr/-/blob/master/deep_mfmvdr/utils.py)
     """
+    ## ------------------------------------- ##
+    mat_r, mat_i = mat_r.float(), mat_i.float()
+    ## ------------------------------------- ##
     nrows = mat_r.size(-2)
     eye = torch.eye(nrows, dtype=mat_r.dtype, device=mat_r.device)
     eye_shape = tuple([1]*(mat_r.dim()-2)) + (nrows, nrows)
